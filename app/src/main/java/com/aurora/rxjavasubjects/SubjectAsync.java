@@ -29,8 +29,8 @@ public class SubjectAsync extends AppCompatActivity {
        // behaviorSubjectDemo2();
        // publishSubjectDemo1();
        // publishSubjectDemo2();
-        replaySubjectDemo1();
-
+        //replaySubjectDemo1();
+        replaySubjectDemo2();
 
     }
 
@@ -156,6 +156,26 @@ public class SubjectAsync extends AppCompatActivity {
 
         replaySubject.subscribe(getFirstObserver());
         replaySubject.subscribe(getSecondObserver());
+        replaySubject.subscribe(getThirdObserver());
+
+
+    }
+    void replaySubjectDemo2() {
+
+
+        ReplaySubject<String> replaySubject = ReplaySubject.create();
+
+        replaySubject.subscribe(getFirstObserver());
+
+        replaySubject.onNext("JAVA");
+        replaySubject.onNext("KOTLIN");
+        replaySubject.onNext("XML");
+
+        replaySubject.subscribe(getSecondObserver());
+
+        replaySubject.onNext("JSON");
+        replaySubject.onComplete();
+
         replaySubject.subscribe(getThirdObserver());
 
 
