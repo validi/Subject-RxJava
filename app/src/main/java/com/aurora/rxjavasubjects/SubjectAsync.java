@@ -20,7 +20,8 @@ public class SubjectAsync extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject_async);
 
-        asyncSubjectDemo1();
+       // asyncSubjectDemo1();
+        asyncSubjectDemo2();
     }
 
 
@@ -40,6 +41,29 @@ public class SubjectAsync extends AppCompatActivity {
 
 
     }
+
+    void asyncSubjectDemo2() {
+
+
+        AsyncSubject<String> asyncSubject = AsyncSubject.create();
+
+        asyncSubject.subscribe(getFirstObserver());
+
+        asyncSubject.onNext("JAVA");
+        asyncSubject.onNext("KOTLIN");
+        asyncSubject.onNext("XML");
+
+        asyncSubject.subscribe(getSecondObserver());
+
+        asyncSubject.onNext("JSON");
+        asyncSubject.onComplete();
+
+        asyncSubject.subscribe(getThirdObserver());
+
+
+    }
+
+
 
     private Observer<String> getFirstObserver() {
 
