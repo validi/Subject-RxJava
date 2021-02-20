@@ -43,6 +43,7 @@ public class SubjectAsync extends AppCompatActivity {
 
     private Observer<String> getFirstObserver() {
 
+
         Observer<String> observer = new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
