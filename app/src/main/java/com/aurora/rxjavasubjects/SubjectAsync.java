@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.AsyncSubject;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public class SubjectAsync extends AppCompatActivity {
 
@@ -24,7 +25,8 @@ public class SubjectAsync extends AppCompatActivity {
        // asyncSubjectDemo1();
       //  asyncSubjectDemo2();
        // behaviorSubjectDemo1();
-        behaviorSubjectDemo2();
+       // behaviorSubjectDemo2();
+        publishSubjectDemo1();
     }
 
 
@@ -98,6 +100,22 @@ public class SubjectAsync extends AppCompatActivity {
         behaviorSubject.onComplete();
 
         behaviorSubject.subscribe(getThirdObserver());
+
+
+    }
+    void publishSubjectDemo1() {
+
+        Observable<String> observable = Observable.just("JAVA", "KOTLIN", "XML", "JSON")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        PublishSubject<String> publishSubject = PublishSubject.create();
+
+        observable.subscribe(publishSubject);
+
+        publishSubject.subscribe(getFirstObserver());
+        publishSubject.subscribe(getSecondObserver());
+        publishSubject.subscribe(getThirdObserver());
 
 
     }
