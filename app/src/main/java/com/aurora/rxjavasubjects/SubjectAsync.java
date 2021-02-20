@@ -23,7 +23,8 @@ public class SubjectAsync extends AppCompatActivity {
 
        // asyncSubjectDemo1();
       //  asyncSubjectDemo2();
-        behaviorSubjectDemo1();
+       // behaviorSubjectDemo1();
+        behaviorSubjectDemo2();
     }
 
 
@@ -76,6 +77,26 @@ public class SubjectAsync extends AppCompatActivity {
 
         behaviorSubject.subscribe(getFirstObserver());
         behaviorSubject.subscribe(getSecondObserver());
+        behaviorSubject.subscribe(getThirdObserver());
+
+
+    }
+    void behaviorSubjectDemo2() {
+
+
+        BehaviorSubject<String> behaviorSubject = BehaviorSubject.create();
+
+        behaviorSubject.subscribe(getFirstObserver());
+
+        behaviorSubject.onNext("JAVA");
+        behaviorSubject.onNext("KOTLIN");
+        behaviorSubject.onNext("XML");
+
+        behaviorSubject.subscribe(getSecondObserver());
+
+        behaviorSubject.onNext("JSON");
+        behaviorSubject.onComplete();
+
         behaviorSubject.subscribe(getThirdObserver());
 
 
